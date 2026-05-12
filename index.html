@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PhishGuard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <div class="container">
+
+        <div class="badge">🖥️ Mini Project</div>
+
+        <div class="header-inline">
+            <img src="{{ url_for('static', filename='phishguard_logo.png') }}" class="inline-logo">
+            <h1>PhishGuard</h1>
+        </div>
+
+        <p class="subtitle">Phishing Awareness & Detection System</p>
+
+        <form method="POST">
+            <textarea name="user_input" placeholder="Paste email text or URL here..." required>{% if result %}{{ result.input }}{% endif %}</textarea>
+            <button type="submit">Analyze for Phishing</button>
+        </form>
+
+        {% if result %}
+        <div class="result {{ result.risk.lower().replace(' ', '-') }}">
+
+            {% if result.risk == "Safe" %}
+                <h2>🟢 Safe</h2>
+            {% elif result.risk == "Suspicious" %}
+                <h2>🟡 Suspicious</h2>
+            {% else %}
+                <h2 class="high-risk-title">🚨 High Risk Phishing</h2>
+            {% endif %}
+
+            <p><strong>Risk Score:</strong> {{ result.score }}</p>
+            <p><strong>Confidence Level:</strong> {{ result.confidence }}%</p>
+
+            {% if result.techniques %}
+            <h3>Phishing Techniques Detected</h3>
+            <ul>
+                {% for tech in result.techniques %}
+                <li>🧠 {{ tech }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if result.risk == "Safe" and result.reasons %}
+            <h3>Trust Indicators</h3>
+            <ul>
+                {% for reason in result.reasons %}
+                <li>✅ {{ reason }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if result.warnings %}
+            <h3>Minor Warnings</h3>
+            <ul>
+                {% for warn in result.warnings %}
+                <li>⚠️ {{ warn }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if result.tips %}
+            <h3>Safety Tips</h3>
+            <ul>
+                {% for tip in result.tips %}
+                <li>✅ {{ tip }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <form method="POST" action="/download">
+                <input type="hidden" name="input" value="{{ result.input }}">
+                <input type="hidden" name="risk" value="{{ result.risk }}">
+                <input type="hidden" name="score" value="{{ result.score }}">
+                <input type="hidden" name="confidence" value="{{ result.confidence }}">
+                <input type="hidden" name="techniques" value="{{ result.techniques }}">
+                <input type="hidden" name="reasons" value="{{ result.reasons }}">
+                <input type="hidden" name="warnings" value="{{ result.warnings }}">
+                <input type="hidden" name="tips" value="{{ result.tips }}">
+                <button type="submit">⬇️ Download Report</button>
+            </form>
+
+        </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
