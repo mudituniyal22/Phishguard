@@ -1,0 +1,164 @@
+/* -------- Global Background -------- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b,
+        #e0f2fe
+    );
+    background-attachment: fixed;
+}
+
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* -------- Main Card -------- */
+.container {
+    max-width: 720px;
+    margin: 70px auto 30px auto;
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+/* -------- Badge -------- */
+.badge {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    background-color: #2563eb;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* -------- Header Inline -------- */
+.header-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.inline-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 6px rgba(37, 99, 235, 0.6);
+}
+
+/* -------- Text -------- */
+h1 {
+    margin: 0;
+}
+
+.subtitle {
+    text-align: center;
+    color: #475569;
+    margin-bottom: 22px;
+}
+
+/* -------- Form -------- */
+textarea {
+    width: 100%;
+    height: 145px;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    resize: none;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+button {
+    width: 100%;
+    margin-top: 14px;
+    padding: 12px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1e40af;
+}
+
+/* -------- Result Card -------- */
+.result {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* SAFE */
+.safe {
+    background-color: #ecfdf5;
+    border-left: 6px solid #16a34a;
+}
+
+/* SUSPICIOUS */
+.suspicious {
+    background-color: #fff7ed;
+    border-left: 6px solid #f59e0b;
+}
+
+/* HIGH RISK */
+.high-risk-phishing {
+    background-color: #fee2e2;
+    border-left: 6px solid #dc2626;
+}
+
+/* -------- High Risk Animation -------- */
+.high-risk-title {
+    animation: pulse 1.5s infinite;
+    color: #b91c1c;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+ul {
+    padding-left: 20px;
+}
+
+/* -------- Footer -------- */
+.footer {
+    background: rgba(15, 23, 42, 0.85);
+    color: #e5e7eb;
+    padding: 22px 10px;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer img {
+    height: 48px;
+}
